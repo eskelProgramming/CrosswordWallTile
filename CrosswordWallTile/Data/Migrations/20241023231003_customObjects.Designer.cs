@@ -4,6 +4,7 @@ using CrosswordWallTile.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrosswordWallTile.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241023231003_customObjects")]
+    partial class customObjects
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,7 +65,7 @@ namespace CrosswordWallTile.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Frames", (string)null);
+                    b.ToTable("Frames");
                 });
 
             modelBuilder.Entity("CrosswordWallTile.Models.Grid", b =>
@@ -89,7 +92,7 @@ namespace CrosswordWallTile.Data.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Grids", (string)null);
+                    b.ToTable("Grids");
                 });
 
             modelBuilder.Entity("CrosswordWallTile.Models.Stain", b =>
@@ -113,7 +116,7 @@ namespace CrosswordWallTile.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stains", (string)null);
+                    b.ToTable("Stains");
                 });
 
             modelBuilder.Entity("CrosswordWallTile.Models.Tile", b =>
@@ -159,7 +162,7 @@ namespace CrosswordWallTile.Data.Migrations
 
                     b.HasIndex("CurrentStainId");
 
-                    b.ToTable("Tiles", (string)null);
+                    b.ToTable("Tiles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

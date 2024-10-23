@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a single Frame
     /// </summary>
-    public class Frame : Product
+    public class Frame : IProduct
     {
         /// <summary>
         /// The unique identifier of the Frame

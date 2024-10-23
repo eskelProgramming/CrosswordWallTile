@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a tile in the crossword wall that can be added to the cart
     /// </summary>
-    public class Tile : Product
+    public class Tile : IProduct
     {
         /// <summary>
         /// The unique identifier of the tile

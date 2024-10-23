@@ -1,4 +1,6 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CrosswordWallTile.Models
 {
@@ -7,6 +9,12 @@ namespace CrosswordWallTile.Models
     /// </summary>
     public class Grid
     {
+        /// <summary>
+        /// The unique identifier for the grid
+        /// </summary>
+        [Key]
+        public int id { get; set; }
+
         /// <summary>
         /// The words to be used in the grid
         /// </summary>
@@ -30,6 +38,8 @@ namespace CrosswordWallTile.Models
         /// <summary>
         /// A 2D array of products that represents the grid
         /// </summary>
+        //Not mapped because 2d arrays can't be mapped easily by EF core
+        [NotMapped]
         public List<List<Product>> ProductGrid { get; set; }
 
         public void SeperateWords(string allWords)
