@@ -21,19 +21,19 @@ namespace CrosswordWallTile.Models
         public string[] Words { get; set; }
 
         /// <summary>
-        /// The height of the grid as an int, in <see cref="GridUnitOfMeasurment"/>
+        /// The height of the grid as an int, in <see cref="GridUnitOfMeasurement"/>
         /// </summary>
         public int GridHeight { get; set; }
 
         /// <summary>
-        /// The width of the grid as an int, in <see cref="GridUnitOfMeasurment"/>
+        /// The width of the grid as an int, in <see cref="GridUnitOfMeasurement"/>
         /// </summary>
         public int GridWidth { get; set; }
 
         /// <summary>
         /// The unit of measurement provided by the user
         /// </summary>
-        public string GridUnitOfMeasurment { get; set; }
+        public string GridUnitOfMeasurement { get; set; }
 
         /// <summary>
         /// A 2D array of products that represents the grid
@@ -42,7 +42,7 @@ namespace CrosswordWallTile.Models
         [NotMapped]
         public List<List<IProduct>> ProductGrid { get; set; }
 
-        public void SeperateWords(string allWords)
+        public void SeparateWords(string allWords)
         {
             throw new NotImplementedException();
         }

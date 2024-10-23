@@ -79,7 +79,7 @@ namespace CrosswordWallTile.Data.Migrations
                     b.Property<int>("GridHeight")
                         .HasColumnType("int");
 
-                    b.Property<string>("GridUnitOfMeasurment")
+                    b.Property<string>("GridUnitOfMeasurement")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
