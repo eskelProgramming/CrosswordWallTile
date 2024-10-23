@@ -40,7 +40,7 @@ namespace CrosswordWallTile.Models
         /// </summary>
         //Not mapped because 2d arrays can't be mapped easily by EF core
         [NotMapped]
-        public List<List<Product>> ProductGrid { get; set; }
+        public List<List<IProduct>> ProductGrid { get; set; }
 
         public void SeperateWords(string allWords)
         {
