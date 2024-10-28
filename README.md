@@ -6,5 +6,6 @@ This is a simple eCommerce site for selling custom Crossword wall art. The custo
 ## Early Development Wireframes
 At the moment, there are still details that need to be ironed out with the client, however these are the rough wireframes for the website:
 
-![CrosswordWallTileWireframeV1](https://github.com/user-attachments/assets/9e49144e-306c-4706-80b3-2108d0f6e3a5)
+![image](https://github.com/user-attachments/assets/e0c5d415-5fdb-4c9c-b718-c198604acb68)
+
 *Subject to change
