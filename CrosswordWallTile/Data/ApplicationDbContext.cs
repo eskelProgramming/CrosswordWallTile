@@ -16,12 +16,20 @@ namespace CrosswordWallTile.Data
         {
         }
 
-        public DbSet<Grid> Grids { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=aspnet-CrosswordWallTile-27c23987-b2af-469f-b5ce-fb6053e41f05;Trusted_Connection=True;MultipleActiveResultSets=true");
+            }
+        }
 
-        public DbSet<Frame> Frames { get; set; }
+        public virtual DbSet<Grid> Grids { get; set; }
 
-        public DbSet<Tile> Tiles { get; set; }
+        public virtual DbSet<Frame> Frames { get; set; }
 
-        public DbSet<Stain> Stains { get; set; }
+        public virtual DbSet<Tile> Tiles { get; set; }
+
+        public virtual DbSet<Stain> Stains { get; set; }
     }
 }
