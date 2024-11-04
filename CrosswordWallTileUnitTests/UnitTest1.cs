@@ -2,6 +2,7 @@ using CrosswordWallTile.Data;
 using CrosswordWallTile.Models;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Sqlite;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,9 @@ namespace CrosswordWallTileUnitTests
             _context = new ApplicationDbContext(options);
             _context.Database.EnsureCreated();
 
-            // Seed the in-memory database with test data
-            _context.Frames.Add(new Frame { Id = 1, Name = "Frame1" });
-            _context.Tiles.Add(new Tile { Id = 1, Name = "Tile1" });
+            _context.Frames.Add(new Frame { Id = 1, Name = "Frame1", ProductImage = "Frame1.png", Description = "Test frame" });
+            _context.Tiles.Add(new Tile { Id = 1, Name = "Tile1", ProductImage = "Tile1.png", Description = "Test Tile", CurrentStain = new Stain() { Id = 1, Name = "Stain 1", Price = 9.99, StainImage = "Stain1.png" } });
+            _context.SaveChanges();
             _context.SaveChanges();
         }
 
@@ -62,7 +63,7 @@ namespace CrosswordWallTileUnitTests
         {
             // Arrange
             CrosswordHelper._context = _context;
-            var newFrame = new Frame { Id = 2, Name = "Frame2" };
+            var newFrame = new Frame { Id = 2, Name = "Frame2", ProductImage = "Frame2.png", Description = "Test frame" };
 
             // Act
             await CrosswordHelper.AddFrameAsync(newFrame);
