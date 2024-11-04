@@ -27,7 +27,6 @@ namespace CrosswordWallTileUnitTests
             _context.Frames.Add(new Frame { Id = 1, Name = "Frame1", ProductImage = "Frame1.png", Description = "Test frame" });
             _context.Tiles.Add(new Tile { Id = 1, Name = "Tile1", ProductImage = "Tile1.png", Description = "Test Tile", CurrentStain = new Stain() { Id = 1, Name = "Stain 1", Price = 9.99, StainImage = "Stain1.png" } });
             _context.SaveChanges();
-            _context.SaveChanges();
         }
 
         [TestCleanup]
@@ -67,6 +66,22 @@ namespace CrosswordWallTileUnitTests
             // Assert
             Assert.AreEqual(2, frames.Count);
             Assert.IsTrue(frames.Any(f => f.Name == "Frame2"));
+        }
+
+        [TestMethod]
+        public async Task AddStainAsync_AddsStainToDatabase()
+        {
+            // Arrange
+            CrosswordHelper._context = _context;
+            var newStain = new Stain { Id = 2, Name = "Stain2", Price = 19.99, StainImage = "Stain2.png" };
+
+            // Act
+            await CrosswordHelper.AddStainAsync(newStain);
+            var stains = await _context.Stains.ToListAsync();
+
+            // Assert
+            Assert.AreEqual(2, stains.Count);
+            Assert.IsTrue(stains.Any(s => s.Name == "Stain2"));
         }
     }
 }

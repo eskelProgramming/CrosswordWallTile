@@ -44,5 +44,17 @@ namespace CrosswordWallTile.Models
             _context.Add(frame);
             await _context.SaveChangesAsync();
         }
+
+
+        /// <summary>
+        /// Adds a new stain to the database asynchronously.
+        /// </summary>
+        /// <param name="stain">The stain object to be added to the database.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        public static async Task AddStainAsync(Stain stain)
+        {
+            _context.Add(stain);
+            await _context.SaveChangesAsync();
+        }
     }
 }

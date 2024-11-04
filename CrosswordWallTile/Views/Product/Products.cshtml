@@ -2,6 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    ViewData["Title"] = "Products";
 }
 @model IEnumerable<IProduct>
 
@@ -9,13 +10,10 @@
 
 <div class="row mb-3">
     <div class="col-md-2">
-        <button class="btn btn-primary">Add Tile Set</button>
+        <a class="btn btn-primary" asp-controller="Product" asp-action="CreateStain">Add Stain</a>
     </div>
     <div class="col-md-2">
-        <button class="btn btn-primary">Add Stain</button>
-    </div>
-    <div class="col-md-2">
-        <a class="btn btn-primary" asp-area="" asp-controller="Product" asp-action="CreateFrame">Add Frame</a>
+        <a class="btn btn-primary" asp-action="CreateFrame">Add Frame</a>
     </div>
 </div>
 

@@ -30,5 +30,25 @@ namespace CrosswordWallTile.Controllers
             await CrosswordHelper.AddFrameAsync(frame);
             return RedirectToAction("Products");
         }
+
+        [HttpGet]
+        public IActionResult CreateStain()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateStain(Stain stain)
+        {
+            // Check if the frame is valid
+            if (!ModelState.IsValid)
+            {
+                return View(stain);
+            }
+
+            // Add the Stain to the database
+            await CrosswordHelper.AddStainAsync(stain);
+            return RedirectToAction("Products");
+        }
     }
 }
