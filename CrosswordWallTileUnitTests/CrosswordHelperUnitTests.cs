@@ -83,5 +83,37 @@ namespace CrosswordWallTileUnitTests
             Assert.AreEqual(2, stains.Count);
             Assert.IsTrue(stains.Any(s => s.Name == "Stain2"));
         }
+
+        [TestMethod]
+        public async Task FindFrameByIdAsync_ReturnsCorrectFrame()
+        {
+            // Arrange
+            CrosswordHelper._context = _context;
+
+            // Act
+            var result = await CrosswordHelper.FindFrameByIdAsync(1);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Id);
+            Assert.AreEqual("Frame1", result.Name);
+        }
+
+        [TestMethod]
+        public async Task UpdateFrame_UpdatesFrameInDatabase()
+        {
+            // Arrange
+            CrosswordHelper._context = _context;
+            var frameToUpdate = await _context.Frames.FindAsync(1);
+            frameToUpdate.Name = "UpdatedFrame";
+
+            // Act
+            await CrosswordHelper.UpdateFrameAsync(frameToUpdate);
+            var updatedFrame = await _context.Frames.FindAsync(1);
+
+            // Assert
+            Assert.IsNotNull(updatedFrame);
+            Assert.AreEqual("UpdatedFrame", updatedFrame.Name);
+        }
     }
 }

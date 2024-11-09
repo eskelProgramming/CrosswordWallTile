@@ -56,5 +56,27 @@ namespace CrosswordWallTile.Models
             _context.Add(stain);
             await _context.SaveChangesAsync();
         }
+
+
+        /// <summary>
+        /// Finds a frame in the database by its ID asynchronously.
+        /// </summary>
+        /// <param name="id">The ID of the frame to find.</param>
+        /// <returns>A task that represents the asynchronous operation. The task result contains the frame with the specified ID.</returns>
+        public static async Task<Frame> FindFrameByIdAsync(int id)
+        {
+            return await _context.Frames.FindAsync(id);
+        }
+
+        /// <summary>
+        /// Updates an existing frame in the database asynchronously.
+        /// </summary>
+        /// <param name="frame">The frame object to be updated in the database.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        public static async Task UpdateFrameAsync(Frame frame)
+        {
+            _context.Frames.Update(frame);
+            await _context.SaveChangesAsync();
+        }
     }
 }

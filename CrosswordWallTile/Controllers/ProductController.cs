@@ -1,5 +1,6 @@
 ﻿using CrosswordWallTile.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrosswordWallTile.Controllers
 {
@@ -48,6 +49,33 @@ namespace CrosswordWallTile.Controllers
 
             // Add the Stain to the database
             await CrosswordHelper.AddStainAsync(stain);
+            return RedirectToAction("Products");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditFrame(int id)
+        {
+            Frame? frameToEdit = await CrosswordHelper.FindFrameByIdAsync(id);
+
+            if (frameToEdit == null)
+            {
+                return NotFound();
+            }
+
+            return View(frameToEdit);
+        }
+
+        [HttpPost] 
+        public async Task<IActionResult> EditFrame(Frame frame)
+        {
+            // Check if the frame is valid
+            if (!ModelState.IsValid)
+            {
+                return View(frame);
+            }
+
+            // Update the frame in the database
+            await CrosswordHelper.UpdateFrameAsync(frame);
             return RedirectToAction("Products");
         }
     }

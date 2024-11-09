@@ -25,6 +25,10 @@
                 <div class="card-body">
                     <h5 class="card-title">@product.Name</h5>
                     <p class="card-text">Id: @product.Id</p>
+                    @if (product is Frame)
+                    {
+                        <a class="btn btn-primary" asp-action="EditFrame" asp-route-id="@product.Id">Edit</a>
+                    }
                 </div>
             </div>
         </div>
