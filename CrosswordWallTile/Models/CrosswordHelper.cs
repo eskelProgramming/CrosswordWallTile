@@ -12,13 +12,6 @@ namespace CrosswordWallTile.Models
         /// A list of all stains in the database.
         /// </summary>
         public static List<Stain> Stains { get; set; }
-
-        /// <summary>
-        /// A DbContext object that is used to interact with the database.
-        /// </summary>
-        public static ApplicationDbContext _context = new ApplicationDbContext();
-
-
         
         /// <summary>
         /// Retrieves all products from the database, including frames and tiles.
@@ -26,8 +19,10 @@ namespace CrosswordWallTile.Models
         /// <returns>A list of all products implementing the IProduct interface.</returns>
         public static async Task<List<IProduct>> GetAllProductsAsync()
         {
-            var frames = await _context.Frames.ToListAsync<IProduct>();
-            var tiles = await _context.Tiles.ToListAsync<IProduct>();
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            var frames = await context.Frames.ToListAsync<IProduct>();
+            var tiles = await context.Tiles.ToListAsync<IProduct>();
 
             var allProducts = frames.Concat(tiles).ToList();
             return allProducts;
@@ -41,8 +36,10 @@ namespace CrosswordWallTile.Models
         /// <returns>A task that represents the asynchronous operation.</returns>
         public static async Task AddFrameAsync(Frame frame)
         {
-            _context.Add(frame);
-            await _context.SaveChangesAsync();
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            context.Add(frame);
+            await context.SaveChangesAsync();
         }
 
 
@@ -53,8 +50,10 @@ namespace CrosswordWallTile.Models
         /// <returns>A task that represents the asynchronous operation.</returns>
         public static async Task AddStainAsync(Stain stain)
         {
-            _context.Add(stain);
-            await _context.SaveChangesAsync();
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            context.Add(stain);
+            await context.SaveChangesAsync();
         }
 
 
@@ -65,7 +64,8 @@ namespace CrosswordWallTile.Models
         /// <returns>A task that represents the asynchronous operation. The task result contains the frame with the specified ID.</returns>
         public static async Task<Frame> FindFrameByIdAsync(int id)
         {
-            return await _context.Frames.FindAsync(id);
+            ApplicationDbContext context = new ApplicationDbContext();
+            return await context.Frames.FindAsync(id);
         }
 
         /// <summary>
@@ -75,8 +75,9 @@ namespace CrosswordWallTile.Models
         /// <returns>A task that represents the asynchronous operation.</returns>
         public static async Task UpdateFrameAsync(Frame frame)
         {
-            _context.Frames.Update(frame);
-            await _context.SaveChangesAsync();
+            ApplicationDbContext context = new ApplicationDbContext();
+            context.Update(frame);
+            await context.SaveChangesAsync();
         }
     }
 }

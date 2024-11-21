@@ -69,14 +69,16 @@ namespace CrosswordWallTile.Controllers
         public async Task<IActionResult> EditFrame(Frame frame)
         {
             // Check if the frame is valid
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(frame);
+                // Update the frame in the database
+                await CrosswordHelper.UpdateFrameAsync(frame);
+
+                TempData["Message"] = $"{frame.Name} was updated successfully";
+                return RedirectToAction("Products");
             }
 
-            // Update the frame in the database
-            await CrosswordHelper.UpdateFrameAsync(frame);
-            return RedirectToAction("Products");
+            return View(frame);
         }
     }
 }
