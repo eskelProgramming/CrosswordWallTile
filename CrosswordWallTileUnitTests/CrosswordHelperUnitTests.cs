@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CrosswordWallTileUnitTests
 {
+    /// <summary>
+    /// Unit tests for the <see cref="CrosswordHelper"/> class.
+    /// </summary>
     [TestClass]
     public class CrosswordHelperTests
     {
@@ -12,6 +15,9 @@ namespace CrosswordWallTileUnitTests
         private SqliteConnection _connection;
         private CrosswordHelper _helper;
 
+        /// <summary>
+        /// Initializes the in-memory database and sets up the test context.
+        /// </summary>
         [TestInitialize]
         public void Setup()
         {
@@ -32,6 +38,9 @@ namespace CrosswordWallTileUnitTests
             _helper = new CrosswordHelper(_context);
         }
 
+        /// <summary>
+        /// Cleans up the in-memory database and disposes of the test context.
+        /// </summary>
         [TestCleanup]
         public void Cleanup()
         {
@@ -40,6 +49,9 @@ namespace CrosswordWallTileUnitTests
             _connection.Close();
         }
 
+        /// <summary>
+        /// Tests that <see cref="CrosswordHelper.GetAllProductsAsync"/> returns all products.
+        /// </summary>
         [TestMethod]
         public async Task GetAllProductsAsync_ReturnsAllProducts()
         {
@@ -52,6 +64,9 @@ namespace CrosswordWallTileUnitTests
             Assert.IsTrue(result.Any(p => p is Tile));
         }
 
+        /// <summary>
+        /// Tests that <see cref="CrosswordHelper.AddFrameAsync"/> adds a frame to the database.
+        /// </summary>
         [TestMethod]
         public async Task AddFrameAsync_AddsFrameToDatabase()
         {
@@ -67,6 +82,9 @@ namespace CrosswordWallTileUnitTests
             Assert.IsTrue(frames.Any(f => f.Name == "Frame2"));
         }
 
+        /// <summary>
+        /// Tests that <see cref="CrosswordHelper.AddStainAsync"/> adds a stain to the database.
+        /// </summary>
         [TestMethod]
         public async Task AddStainAsync_AddsStainToDatabase()
         {
@@ -82,6 +100,9 @@ namespace CrosswordWallTileUnitTests
             Assert.IsTrue(stains.Any(s => s.Name == "Stain2"));
         }
 
+        /// <summary>
+        /// Tests that <see cref="CrosswordHelper.FindFrameByIdAsync"/> returns the correct frame.
+        /// </summary>
         [TestMethod]
         public async Task FindFrameByIdAsync_ReturnsCorrectFrame()
         {
@@ -94,6 +115,9 @@ namespace CrosswordWallTileUnitTests
             Assert.AreEqual("Frame1", result.Name);
         }
 
+        /// <summary>
+        /// Tests that <see cref="CrosswordHelper.UpdateFrameAsync"/> updates a frame in the database.
+        /// </summary>
         [TestMethod]
         public async Task UpdateFrame_UpdatesFrameInDatabase()
         {
@@ -110,6 +134,9 @@ namespace CrosswordWallTileUnitTests
             Assert.AreEqual("UpdatedFrame", updatedFrame.Name);
         }
 
+        /// <summary>
+        /// Tests that <see cref="CrosswordHelper.DeleteFrameAsync"/> deletes a frame from the database.
+        /// </summary>
         [TestMethod]
         public async Task DeleteFrameAsync_DeletesFrameFromDatabase()
         {
