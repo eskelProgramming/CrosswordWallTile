@@ -46,5 +46,11 @@ namespace CrosswordWallTile.Models
             _context.Frames.Update(frame);
             await _context.SaveChangesAsync();
         }
+
+        public async Task DeleteFrameAsync(Frame frame)
+        {
+            _context.Frames.Remove(frame);
+            await _context.SaveChangesAsync();
+        }
     }
 }

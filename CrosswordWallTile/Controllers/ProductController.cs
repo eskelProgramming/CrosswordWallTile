@@ -80,5 +80,29 @@ namespace CrosswordWallTile.Controllers
 
             return View(frame);
         }
+
+        [HttpGet] 
+        public async Task<IActionResult> DeleteFrame(int id)
+        {
+            Frame? frameToDelete = await _helper.FindFrameByIdAsync(id);
+            if (frameToDelete == null)
+            {
+                return NotFound();
+            }
+            return View(frameToDelete);
+        }
+
+        [HttpPost, ActionName("DeleteFrame")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            Frame frameToDelete = await _helper.FindFrameByIdAsync(id);
+            if (frameToDelete != null)
+            {
+                await _helper.DeleteFrameAsync(frameToDelete);
+                TempData["Message"] = $"{frameToDelete.Name} was deleted successfully";
+                return RedirectToAction("Products");
+            }
+            return View(frameToDelete);
+        }
     }
 }

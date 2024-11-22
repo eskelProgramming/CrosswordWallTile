@@ -1,0 +1,15 @@
+﻿@model CrosswordWallTile.Models.Frame
+
+@{
+    ViewData["Title"] = "Delete Frame";
+}
+
+<h1>Delete Frame</h1>
+
+<h1 class="text-danger">Are you sure you want to delete @Model.Name?</h1>
+
+<form asp-action="DeleteFrame">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-action="Index">Back to List</a>
+</form>

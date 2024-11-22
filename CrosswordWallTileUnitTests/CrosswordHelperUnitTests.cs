@@ -109,5 +109,19 @@ namespace CrosswordWallTileUnitTests
             Assert.IsNotNull(updatedFrame);
             Assert.AreEqual("UpdatedFrame", updatedFrame.Name);
         }
+
+        [TestMethod]
+        public async Task DeleteFrameAsync_DeletesFrameFromDatabase()
+        {
+            // Arrange
+            var frameToDelete = await _context.Frames.FindAsync(1);
+
+            // Act
+            await _helper.DeleteFrameAsync(frameToDelete);
+            var frames = await _context.Frames.ToListAsync();
+
+            // Assert
+            Assert.AreEqual(0, frames.Count);
+        }
     }
 }
