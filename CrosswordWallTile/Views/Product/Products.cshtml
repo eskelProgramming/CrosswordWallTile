@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Products";
+}
+@model IEnumerable<IProduct>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismisable fade show" role="alert">
+        @TempData["Message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<h1>Product List</h1>
+
+<div class="row mb-3">
+    <div class="col-md-2">
+        <a class="btn btn-primary" asp-controller="Product" asp-action="CreateStain">Add Stain</a>
+    </div>
+    <div class="col-md-2">
+        <a class="btn btn-primary" asp-action="CreateFrame">Add Frame</a>
+    </div>
+</div>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">Id: @product.Id</p>
+                    @if (product is Frame)
+                    {
+                        <a class="btn btn-primary" asp-action="EditFrame" asp-route-id="@product.Id">Edit</a>
+                        <a class="btn btn-danger" asp-action="DeleteFrame" asp-route-id="@product.Id">Delete</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
