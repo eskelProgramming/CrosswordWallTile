@@ -10,6 +10,7 @@ namespace CrosswordWallTileUnitTests
     {
         private ApplicationDbContext _context;
         private SqliteConnection _connection;
+        private CrosswordHelper _helper;
 
         [TestInitialize]
         public void Setup()
@@ -27,6 +28,8 @@ namespace CrosswordWallTileUnitTests
             _context.Frames.Add(new Frame { Id = 1, Name = "Frame1", ProductImage = "Frame1.png", Description = "Test frame" });
             _context.Tiles.Add(new Tile { Id = 1, Name = "Tile1", ProductImage = "Tile1.png", Description = "Test Tile", CurrentStain = new Stain() { Id = 1, Name = "Stain 1", Price = 9.99, StainImage = "Stain1.png" } });
             _context.SaveChanges();
+
+            _helper = new CrosswordHelper(_context);
         }
 
         [TestCleanup]
@@ -40,11 +43,8 @@ namespace CrosswordWallTileUnitTests
         [TestMethod]
         public async Task GetAllProductsAsync_ReturnsAllProducts()
         {
-            // Arrange
-            CrosswordHelper._context = _context;
-
             // Act
-            var result = await CrosswordHelper.GetAllProductsAsync();
+            var result = await _helper.GetAllProductsAsync();
 
             // Assert
             Assert.AreEqual(2, result.Count);
@@ -56,11 +56,10 @@ namespace CrosswordWallTileUnitTests
         public async Task AddFrameAsync_AddsFrameToDatabase()
         {
             // Arrange
-            CrosswordHelper._context = _context;
             var newFrame = new Frame { Id = 2, Name = "Frame2", ProductImage = "Frame2.png", Description = "Test frame" };
 
             // Act
-            await CrosswordHelper.AddFrameAsync(newFrame);
+            await _helper.AddFrameAsync(newFrame);
             var frames = await _context.Frames.ToListAsync();
 
             // Assert
@@ -72,11 +71,10 @@ namespace CrosswordWallTileUnitTests
         public async Task AddStainAsync_AddsStainToDatabase()
         {
             // Arrange
-            CrosswordHelper._context = _context;
             var newStain = new Stain { Id = 2, Name = "Stain2", Price = 19.99, StainImage = "Stain2.png" };
 
             // Act
-            await CrosswordHelper.AddStainAsync(newStain);
+            await _helper.AddStainAsync(newStain);
             var stains = await _context.Stains.ToListAsync();
 
             // Assert
@@ -87,11 +85,8 @@ namespace CrosswordWallTileUnitTests
         [TestMethod]
         public async Task FindFrameByIdAsync_ReturnsCorrectFrame()
         {
-            // Arrange
-            CrosswordHelper._context = _context;
-
             // Act
-            var result = await CrosswordHelper.FindFrameByIdAsync(1);
+            var result = await _helper.FindFrameByIdAsync(1);
 
             // Assert
             Assert.IsNotNull(result);
@@ -103,12 +98,11 @@ namespace CrosswordWallTileUnitTests
         public async Task UpdateFrame_UpdatesFrameInDatabase()
         {
             // Arrange
-            CrosswordHelper._context = _context;
             var frameToUpdate = await _context.Frames.FindAsync(1);
             frameToUpdate.Name = "UpdatedFrame";
 
             // Act
-            await CrosswordHelper.UpdateFrameAsync(frameToUpdate);
+            await _helper.UpdateFrameAsync(frameToUpdate);
             var updatedFrame = await _context.Frames.FindAsync(1);
 
             // Assert
