@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/CrosswordWallTile/Properties/ServiceDependencies/CrosswordWallTile - Zip Deploy/mssql1.arm.json
+/CrosswordWallTile/Properties/ServiceDependencies/CrosswordWallTile - Zip Deploy/profile.arm.json
+/CrosswordWallTile/Properties/serviceDependencies.CrosswordWallTile - Zip Deploy.json
+/CrosswordWallTile/Properties/serviceDependencies.json
