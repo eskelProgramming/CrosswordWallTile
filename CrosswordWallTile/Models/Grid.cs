@@ -31,9 +31,9 @@ namespace CrosswordWallTile.Models
         public int GridWidth { get; set; }
 
         /// <summary>
-        /// The unit of measurement provided by the user
+        /// The unit of measurement provided by the user. By default set to "Inches"
         /// </summary>
-        public string GridUnitOfMeasurement { get; set; }
+        public string GridUnitOfMeasurement { get; set; } = "Inches";
 
         /// <summary>
         /// A 2D array of products that represents the grid

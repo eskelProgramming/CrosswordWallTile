@@ -17,7 +17,7 @@ namespace CrosswordWallTile.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -62,7 +62,7 @@ namespace CrosswordWallTile.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Frames", (string)null);
+                    b.ToTable("Frames");
                 });
 
             modelBuilder.Entity("CrosswordWallTile.Models.Grid", b =>
@@ -76,20 +76,20 @@ namespace CrosswordWallTile.Data.Migrations
                     b.Property<int>("GridHeight")
                         .HasColumnType("int");
 
-                    b.Property<string>("GridUnitOfMeasurment")
+                    b.Property<string>("GridUnitOfMeasurement")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GridWidth")
                         .HasColumnType("int");
 
-                    b.Property<string>("Words")
+                    b.PrimitiveCollection<string>("Words")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
-                    b.ToTable("Grids", (string)null);
+                    b.ToTable("Grids");
                 });
 
             modelBuilder.Entity("CrosswordWallTile.Models.Stain", b =>
@@ -113,7 +113,7 @@ namespace CrosswordWallTile.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stains", (string)null);
+                    b.ToTable("Stains");
                 });
 
             modelBuilder.Entity("CrosswordWallTile.Models.Tile", b =>
@@ -159,7 +159,7 @@ namespace CrosswordWallTile.Data.Migrations
 
                     b.HasIndex("CurrentStainId");
 
-                    b.ToTable("Tiles", (string)null);
+                    b.ToTable("Tiles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
