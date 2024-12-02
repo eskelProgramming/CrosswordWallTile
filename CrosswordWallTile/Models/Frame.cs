@@ -1,4 +1,6 @@
-﻿namespace CrosswordWallTile.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CrosswordWallTile.Models
 {
     /// <summary>
     /// Represents a single Frame
@@ -13,11 +15,13 @@
         /// <summary>
         /// The name of the Frame
         /// </summary>
+        [Required]
         public string Name { get; set; }
 
         /// <summary>
         /// The price of the Frame
         /// </summary>
+        [Required]
         public double Price { get; set; }
 
         /// <summary>
@@ -28,21 +32,25 @@
         /// <summary>
         /// The quantity of this Frame in the cart
         /// </summary>
+        [Required]
         public int Quantity { get; set; }
 
         /// <summary>
         /// The description of the Frame
         /// </summary>
+        [Required]
         public string Description { get; set; }
 
         /// <summary>
         /// The height of the Frame in inches
         /// </summary>
+        [Required]
         public double Height { get; set; }
 
         /// <summary>
         /// The width of the Frame in inches
         /// </summary>
+        [Required]
         public double Width { get; set; }
 
         /// <summary>
