@@ -4,19 +4,19 @@ using Microsoft.EntityFrameworkCore;
 namespace CrosswordWallTile.Models
 {
     /// <summary>
-    /// A static helper class for the Crossword project. 
+    /// A helper class for the Crossword project. 
     /// </summary>
     public class CrosswordHelper
     {
         /// <summary>
-        /// Gets or sets the list of stains.
+        /// Gets the list of stains.
         /// </summary>
-        public List<Stain> Stains { get; set; }
+        public List<Stain> Stains { get; private set; }
 
         private readonly ApplicationDbContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CrosswordHelper"/> class.
+        /// Initializes a new instance of the <see cref="CrosswordHelper"/> class and set the <see cref="Stains"/> property.
         /// </summary>
         /// <param name="context">The application database context.</param>
         public CrosswordHelper(ApplicationDbContext context)
@@ -59,9 +59,9 @@ namespace CrosswordWallTile.Models
         }
 
         /// <summary>
-        /// Finds a frame by its identifier asynchronously.
+        /// Finds a frame by its unique identifier asynchronously.
         /// </summary>
-        /// <param name="id">The identifier of the frame.</param>
+        /// <param name="id">The unique sidentifier of the frame.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains the frame.</returns>
         public async Task<Frame> FindFrameByIdAsync(int id)
         {
