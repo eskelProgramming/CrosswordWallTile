@@ -31,7 +31,7 @@
         public int Quantity { get; set; }
 
         /// <summary>
-        /// The Description of the Frame
+        /// The description of the Frame
         /// </summary>
         public string Description { get; set; }
 
