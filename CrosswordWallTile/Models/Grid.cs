@@ -13,25 +13,29 @@ namespace CrosswordWallTile.Models
         /// The unique identifier for the Grid
         /// </summary>
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// The words to be used in the Grid
+        [Required]
         public string[] Words { get; set; }
 
         /// <summary>
         /// The height of the Grid as an Int, in <see cref="GridUnitOfMeasurement"/>
         /// </summary>
+        [Required]
         public int GridHeight { get; set; }
 
         /// <summary>
         /// The width of the Grid as an Int, in <see cref="GridUnitOfMeasurement"/>
         /// </summary>
+        [Required]
         public int GridWidth { get; set; }
 
         /// <summary>
         /// The unit of measurement provided by the user
         /// </summary>
+        [Required]
         public string GridUnitOfMeasurement { get; set; }
 
         /// <summary>
