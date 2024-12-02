@@ -1,3 +1,5 @@
+[![.NET](https://github.com/eskelProgramming/CrosswordWallTile/actions/workflows/dotnet.yml/badge.svg)](https://github.com/eskelProgramming/CrosswordWallTile/actions/workflows/dotnet.yml)
+
 # Crossword Wall Tile
 
 ## Description
