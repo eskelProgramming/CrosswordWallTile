@@ -1,4 +1,7 @@
-﻿namespace CrosswordWallTile.Models
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+
+namespace CrosswordWallTile.Models
 {
     /// <summary>
     /// Represents a tile in the crossword wall that can be added to the cart
@@ -13,17 +16,19 @@
         /// <summary>
         /// The name of the tile
         /// </summary>
+        [Required]
         public string Name { get; set; }
 
         /// <summary>
         /// The consumer price of the tile without tax
         /// </summary>
+        [Required]
         public double Price { get; set; }
 
         /// <summary>
         /// The location of the image of the tile
         /// </summary>
-        public string ProductImage { get; set; }
+        public string? ProductImage { get; set; }
 
 
         /// <summary>
@@ -34,6 +39,7 @@
         /// <summary>
         /// The description of the tile
         /// </summary>
+        [Required]
         public string Description { get; set; } = "A tile for the crossword wall";
 
         /// <summary>
@@ -44,6 +50,7 @@
         /// <summary>
         /// The stain currently selected for this tile
         /// </summary>
+        [Required]
         public Stain CurrentStain { get; set; }
 
         /// <summary>
