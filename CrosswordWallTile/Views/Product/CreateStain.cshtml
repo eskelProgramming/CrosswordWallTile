@@ -28,6 +28,11 @@
                 <span asp-validation-for="StainImage" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="AllowedFontColors" class="control-label"></label>
+                <input asp-for="AllowedFontColors" class="form-control" />
+                <span asp-validation-for="AllowedFontColors" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
