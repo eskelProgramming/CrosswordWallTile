@@ -24,5 +24,10 @@
         /// The location of the image for the Stain.
         /// </summary>
         public string StainImage { get; set; }
+
+        /// <summary>
+        /// The font colors allowed with this Stain.
+        /// </summary>
+        public List<String> AllowedFontColors { get; set; }
     }
 }

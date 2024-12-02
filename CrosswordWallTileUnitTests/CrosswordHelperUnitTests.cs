@@ -11,23 +11,23 @@ namespace CrosswordWallTileUnitTests
     [TestClass]
     public class CrosswordHelperTests
     {
-        
+
         /// <summary>
         /// The application database context used for testing.
         /// </summary>
-        private ApplicationDbContext _context;
+        private ApplicationDbContext _context = null!;
 
 
         /// <summary>
         /// The SQLite connection used for the in-memory database.
         /// </summary>
-        private SqliteConnection _connection;
+        private SqliteConnection _connection = null!;
 
 
         /// <summary>
         /// The helper class used for crossword operations.
         /// </summary>
-        private CrosswordHelper _helper;
+        private CrosswordHelper _helper = null!;
 
         /// <summary>
         /// Initializes the in-memory database and sets up the test context.
@@ -45,8 +45,28 @@ namespace CrosswordWallTileUnitTests
             _context = new ApplicationDbContext(options);
             _context.Database.EnsureCreated();
 
-            _context.Frames.Add(new Frame { Id = 1, Name = "Frame1", ProductImage = "Frame1.png", Description = "Test frame" });
-            _context.Tiles.Add(new Tile { Id = 1, Name = "Tile1", ProductImage = "Tile1.png", Description = "Test Tile", CurrentStain = new Stain() { Id = 1, Name = "Stain 1", Price = 9.99, StainImage = "Stain1.png" } });
+            _context.Frames.Add(new Frame
+            {
+                Id = 1,
+                Name = "Frame1",
+                ProductImage = "Frame1.png",
+                Description = "Test frame"
+            });
+            _context.Tiles.Add(new Tile
+            {
+                Id = 1,
+                Name = "Tile1",
+                ProductImage = "Tile1.png",
+                Description = "Test Tile",
+                CurrentStain = new Stain
+                {
+                    Id = 1,
+                    Name = "Stain 1",
+                    Price = 9.99,
+                    StainImage = "Stain1.png",
+                    AllowedFontColors = new List<string> { "Black" }
+                }
+            });
             _context.SaveChanges();
 
             _helper = new CrosswordHelper(_context);
@@ -85,7 +105,13 @@ namespace CrosswordWallTileUnitTests
         public async Task AddFrameAsync_AddsFrameToDatabase()
         {
             // Arrange
-            var newFrame = new Frame { Id = 2, Name = "Frame2", ProductImage = "Frame2.png", Description = "Test frame" };
+            var newFrame = new Frame
+            {
+                Id = 2,
+                Name = "Frame2",
+                ProductImage = "Frame2.png",
+                Description = "Test frame"
+            };
 
             // Act
             await _helper.AddFrameAsync(newFrame);
@@ -103,7 +129,14 @@ namespace CrosswordWallTileUnitTests
         public async Task AddStainAsync_AddsStainToDatabase()
         {
             // Arrange
-            var newStain = new Stain { Id = 2, Name = "Stain2", Price = 19.99, StainImage = "Stain2.png" };
+            var newStain = new Stain
+            {
+                Id = 2,
+                Name = "Stain2",
+                Price = 19.99,
+                StainImage = "Stain2.png",
+                AllowedFontColors = new List<string> { "Black" }
+            };
 
             // Act
             await _helper.AddStainAsync(newStain);
@@ -137,6 +170,7 @@ namespace CrosswordWallTileUnitTests
         {
             // Arrange
             var frameToUpdate = await _context.Frames.FindAsync(1);
+            Assert.IsNotNull(frameToUpdate);
             frameToUpdate.Name = "UpdatedFrame";
 
             // Act
@@ -156,6 +190,7 @@ namespace CrosswordWallTileUnitTests
         {
             // Arrange
             var frameToDelete = await _context.Frames.FindAsync(1);
+            Assert.IsNotNull(frameToDelete);
 
             // Act
             await _helper.DeleteFrameAsync(frameToDelete);
