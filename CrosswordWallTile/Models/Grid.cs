@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CrosswordWallTile.Models
+
+//This is a comment for testing purposes
 {
     /// <summary>
     /// Represents a Grid of <see cref="IProduct"/>. 
