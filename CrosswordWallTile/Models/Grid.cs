@@ -5,28 +5,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CrosswordWallTile.Models
 {
     /// <summary>
-    /// Represents a grid of products. 
+    /// Represents a Grid of <see cref="IProduct"/>. 
     /// </summary>
     public class Grid
     {
         /// <summary>
-        /// The unique identifier for the grid
+        /// The unique identifier for the Grid
         /// </summary>
         [Key]
         public int id { get; set; }
 
         /// <summary>
-        /// The words to be used in the grid
-        /// </summary>
+        /// The words to be used in the Grid
         public string[] Words { get; set; }
 
         /// <summary>
-        /// The height of the grid as an int, in <see cref="GridUnitOfMeasurement"/>
+        /// The height of the Grid as an Int, in <see cref="GridUnitOfMeasurement"/>
         /// </summary>
         public int GridHeight { get; set; }
 
         /// <summary>
-        /// The width of the grid as an int, in <see cref="GridUnitOfMeasurement"/>
+        /// The width of the Grid as an Int, in <see cref="GridUnitOfMeasurement"/>
         /// </summary>
         public int GridWidth { get; set; }
 
@@ -36,9 +35,8 @@ namespace CrosswordWallTile.Models
         public string GridUnitOfMeasurement { get; set; }
 
         /// <summary>
-        /// A 2D array of products that represents the grid
+        /// A 2D array of products that represents the grid. Not mapped because 2d arrays cannot be mapped easily by EF core.
         /// </summary>
-        //Not mapped because 2d arrays can't be mapped easily by EF core
         [NotMapped]
         public List<List<IProduct>> ProductGrid { get; set; }
 

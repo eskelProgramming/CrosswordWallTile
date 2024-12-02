@@ -18,7 +18,7 @@ namespace CrosswordWallTile.Models
         string Name { get; set; }
 
         /// <summary>
-        /// The consumer price of the product
+        /// The consumer price of the product without tax
         /// </summary>
         double Price { get; set; }
 

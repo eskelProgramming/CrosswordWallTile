@@ -11,8 +11,22 @@ namespace CrosswordWallTileUnitTests
     [TestClass]
     public class CrosswordHelperTests
     {
+        
+        /// <summary>
+        /// The application database context used for testing.
+        /// </summary>
         private ApplicationDbContext _context;
+
+
+        /// <summary>
+        /// The SQLite connection used for the in-memory database.
+        /// </summary>
         private SqliteConnection _connection;
+
+
+        /// <summary>
+        /// The helper class used for crossword operations.
+        /// </summary>
         private CrosswordHelper _helper;
 
         /// <summary>
