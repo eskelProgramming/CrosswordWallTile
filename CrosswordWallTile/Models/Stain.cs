@@ -1,4 +1,6 @@
-﻿namespace CrosswordWallTile.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CrosswordWallTile.Models
 {
     /// <summary>
     /// Represents a single Stain that can be applied to a wall tile.
@@ -13,11 +15,13 @@
         /// <summary>
         /// The name of the Stain.
         /// </summary>
+        [Required]
         public string Name { get; set; }
 
         /// <summary>
         /// The price of the Stain.
         /// </summary>
+        [Required]
         public double Price { get; set; }
 
         /// <summary>
