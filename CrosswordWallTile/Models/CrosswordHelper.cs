@@ -22,6 +22,7 @@ namespace CrosswordWallTile.Models
         public CrosswordHelper(ApplicationDbContext context)
         {
             _context = context;
+            Stains = _context.Stains.ToList();
         }
 
         /// <summary>
