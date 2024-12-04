@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,6 +18,7 @@ namespace CrosswordWallTile.Models
 
         /// <summary>
         /// The words to be used in the Grid
+        /// </summary>
         [Required]
         public string[] Words { get; set; }
 
@@ -44,39 +46,39 @@ namespace CrosswordWallTile.Models
         [NotMapped]
         public List<List<IProduct>> ProductGrid { get; set; }
 
-        public void SeparateWords(string allWords)
+        /// <summary>
+        /// Generates the crossword and populates the ProductGrid with Tiles.
+        /// </summary>
+        /// <param name="words">List of words to include in the crossword.</param>
+        public async Task GenerateCrosswordAndPopulateGridAsync(List<string> words)
         {
-            throw new NotImplementedException();
-        }
+            CrosswordGenerator crosswordGen = new CrosswordGenerator(words);
+            string[,] result = await Task.Run(() => crosswordGen.GetCrossword());
 
-        public void ShuffleArray()
-        {
-            throw new NotImplementedException();
-        }
+            ProductGrid = new List<List<IProduct>>();
 
-        public void GenerateCrossword()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CanPlaceWord(string word, int x, int y, string direction)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PlaceWord(string word, int x, int y, string direction)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FindPlacement(string word)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RenderCrossword()
-        {
-            throw new NotImplementedException();
+            for (int i = 0; i < result.GetLength(0); i++)
+            {
+                var row = new List<IProduct>();
+                for (int j = 0; j < result.GetLength(1); j++)
+                {
+                    var letter = string.IsNullOrEmpty(result[i, j]) ? ' ' : result[i, j][0];
+                    row.Add(new Tile
+                    {
+                        Id = i * result.GetLength(1) + j,
+                        Name = $"Tile_{i}_{j}",
+                        Price = 0, // Assign appropriate value if needed
+                        ProductImage = string.Empty, // Assign appropriate value if needed
+                        Quantity = 1,
+                        Description = "Crossword Tile",
+                        Letter = letter, // Use the 'letter' variable here
+                        XPos = i,
+                        YPos = j,
+                        CurrentStain = new Stain() // Assign appropriate value if needed
+                    });
+                }
+                ProductGrid.Add(row);
+            }
         }
     }
 }
