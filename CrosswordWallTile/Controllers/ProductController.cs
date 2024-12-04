@@ -104,5 +104,28 @@ namespace CrosswordWallTile.Controllers
             }
             return View(frameToDelete);
         }
+
+        [HttpGet]
+        public IActionResult CrosswordGenerator()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CrosswordGenerator(string Words)
+        {
+            if (Words == null)
+            {
+                ViewBag.Message = "Please enter a list of words to generate a crossword";
+                return View();
+            }
+            else
+            {
+                List<string> words = Words.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                Grid grid = new Grid();
+                await grid.GenerateCrosswordAndPopulateGridAsync(words);
+                return View(grid);
+            }
+        }
     }
 }

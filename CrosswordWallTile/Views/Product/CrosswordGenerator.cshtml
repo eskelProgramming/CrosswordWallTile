@@ -1,0 +1,34 @@
+﻿@model CrosswordWallTile.Models.Grid
+
+@{
+    ViewBag.Title = "Crossword Generator";
+}
+
+<h1>Crossword Generator</h1>
+
+<form method="post">
+    <div>
+        <label for="words">Enter words (comma separated):</label>
+        <input type="text" id="words" name="words" />
+    </div>
+    <button type="submit">Generate</button>
+</form>
+
+@if (Model != null)
+{
+    <h2>Generated Grid</h2>
+    <table>
+        @foreach (var row in Model.ProductGrid)
+        {
+            <tr>
+                @foreach (var cell in row)
+                {
+                    @if (cell is CrosswordWallTile.Models.Tile tile)
+                    {
+                        <td>@tile.Letter</td>
+                    }
+                }
+            </tr>
+        }
+    </table>
+}
