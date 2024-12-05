@@ -7,6 +7,7 @@ namespace CrosswordWallTile.Controllers
     public class ProductController : Controller
     {
         private readonly CrosswordHelper _helper;
+        private static readonly string[] WordSeparators = new[] { ", ", ",", " " };
 
         public ProductController(CrosswordHelper helper)
         {
@@ -81,7 +82,7 @@ namespace CrosswordWallTile.Controllers
             return View(frame);
         }
 
-        [HttpGet] 
+        [HttpGet]
         public async Task<IActionResult> DeleteFrame(int id)
         {
             Frame? frameToDelete = await _helper.FindFrameByIdAsync(id);
@@ -121,7 +122,7 @@ namespace CrosswordWallTile.Controllers
             }
             else
             {
-                List<string> words = Words.Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                List<string> words = Words.Split(WordSeparators, StringSplitOptions.RemoveEmptyEntries).ToList();
                 Grid grid = new Grid();
                 await grid.GenerateCrosswordAndPopulateGridAsync(words);
                 return View(grid);
